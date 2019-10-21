@@ -1,0 +1,44 @@
+<div class="loader text-success" *ngIf="!_charged"></div>
+<div class="component" *ngIf="_charged">
+  <div class="container" *ngIf="_arrayMod.success">
+    <table class="table table-striped table-responsive-md btn-table">
+      <thead>
+        <tr>
+          <th>INDEX</th>
+          <th>VALOR</th>
+          <th>FRECUENCIA</th>
+          <th>PRIMERA POS</th>
+          <th>ULTIMA POS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of arrayModFiltered; index as i;" [ngClass]="{
+                'bg-success'    :item.quantity>=2,
+                'bg-warning'    :item.quantity==1,
+                'bg-secondary'  :item.quantity<1}">
+          <th>{{i}}</th>
+          <td>{{item.value}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.firsPosition}}</td>
+          <td>{{item.lastPosition}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+    <input class="form-control" readonly type="text" name="" id="arrayOrdener" value=" {{arrayModRefactored}}">
+    <br>
+  </div>
+  <div class="container noDataContainer">
+    <div>
+      <div *ngIf="!_arrayMod.success">
+        <h1>NO DATA FOUND <small>
+            <font face="Tahoma" color="red">Error</font>
+          </small></h1>
+        <br />
+        <p>No ha sido posible desplegar información, porfavor, recarga la página para reintentarlo</p>
+        <a href="#" onclick="location.reload(true);" class="btn btn-large btn-info"><i class="icon-home icon-white"></i>
+          RECARGAR</a>
+      </div>
+    </div>
+  </div>
+</div>

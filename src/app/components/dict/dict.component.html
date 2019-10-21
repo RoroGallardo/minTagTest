@@ -1,0 +1,40 @@
+<div class="loader text-success" *ngIf="!_charged"></div>
+<div class="component" *ngIf="_charged">
+
+    <div class="container" *ngIf="_charged">
+        <table class="table table-striped table-responsive-md btn-table">
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th *ngFor="let item of _arrayAlphabet; index as i;">{{item}}</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of pageOfItems; index as i; ">
+                    <th placement="right" data-toggle="tooltip" title="{{item.parag}}">{{i}}</th>
+                    <td *ngFor="let chart of item.array; index as f; ">{{chart.count}}</td>
+                    <td>{{item.sum}}</td>
+                    
+                </tr>
+
+            </tbody>
+        </table>
+        <jw-pagination [items]="_arrayProsCharts" (changePage)="onChangePage($event)"></jw-pagination>
+    </div>
+    <div class="container noDataContainer">
+        <div>
+            <div *ngIf="!_dictMod.success">
+                <h1>NO DATA FOUND <small>   
+                        <font face="Tahoma" color="red">Error</font>
+                    </small></h1>
+                <br />
+                <p>No ha sido posible desplegar información, porfavor, recarga la página para reintentarlo</p>
+                <a href="#" onclick="location.reload(true);" class="btn btn-large btn-info"><i class="icon-home icon-white"></i>
+                    RECARGAR</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
